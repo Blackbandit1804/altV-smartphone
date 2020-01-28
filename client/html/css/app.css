@@ -17,6 +17,7 @@
 	--font: #fff;
 	--background: rgb(37, 105, 150);
 	--fav: rgb(25, 70, 100);
+	--fav-dark: rgb(17, 47, 66);
 }
 * {
 	margin: 0;
@@ -26,6 +27,10 @@
 body {
 	font-size: 1vw;
 	overflow: hidden;
+}
+h1 {
+	text-align: center;
+	font-size: 1.25vw;
 }
 #smartphone {
 	color: var(--font);
@@ -73,7 +78,28 @@ body {
 	min-height: calc(100% - 1vw);
 }
 #appScreen {
-	min-height: calc(100% - 4vw);
+	min-height: calc(100% - 5vw);
+	max-height: calc(100% - 5vw);
+	overflow: auto;
+	padding: 0.5vw;
+	position: relative;
+}
+#appScreen::-webkit-scrollbar {
+	display: none;
+}
+input[type='text'] {
+	width: calc(100% - 0.5vw);
+	margin: 0.25vw 0;
+	background-color: var(--fav-dark);
+	border: 0;
+	padding: 0.25vw;
+	color: var(--font);
+}
+.contact {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	cursor: pointer;
 }
 #homeScreen {
 	position: relative;
@@ -187,4 +213,9 @@ body {
 }
 #appGpsButton {
 	background-color: rgb(59, 112, 212);
+}
+#appContactsList > div {
+	border-bottom: 0.05vw solid rgb(25, 83, 121);
+	padding: 0.25vw;
+	font-size: 0.75vw;
 }

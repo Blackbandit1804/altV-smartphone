@@ -13,6 +13,36 @@ $(() => {
 	let noAppScreen = ['appChargeButton', 'appAirplaneButton'];
 	// #endregion
 
+	// #region TEST
+	// toggleHomeScreen();
+	updateSmartphone({
+		batteryPercent: 88,
+		currentTime: '23:09'
+	});
+	receiveContacts([
+		{ name: 'Abbigail Mccabe', phone: '9300' },
+		{ name: 'Brody Kaufman', phone: '9301' },
+		{ name: 'Charlie Elliott', phone: '9302' },
+		{ name: 'Eilish Maddox', phone: '9303' },
+		{ name: 'Elliott Morales', phone: '9304' },
+		{ name: 'Elwood Valencia', phone: '9305' },
+		{ name: 'Fynley Bowers', phone: '9306' },
+		{ name: 'Kingston Farrell', phone: '9307' },
+		{ name: 'Kylie Edge', phone: '9308' },
+		{ name: 'Lorelai Harmon', phone: '9309' },
+		{ name: 'Marjorie Rayner', phone: '9310' },
+		{ name: 'Owain Mathis', phone: '9311' },
+		{ name: 'Peyton Harmon', phone: '9312' },
+		{ name: 'Rami Franks', phone: '9313' },
+		{ name: 'Reon Bean', phone: '9314' },
+		{ name: 'Samara Wise', phone: '9315' },
+		{ name: 'Simran Kirkland', phone: '9316' },
+		{ name: 'Teri Berger', phone: '9317' },
+		{ name: 'Tj Howell', phone: '9318' },
+		{ name: 'Uzair Warner', phone: '9319' }
+	]);
+	// #endregion
+
 	// #region FUNCTIONS
 	function updateSmartphone(data) {
 		let batteryIcon = 'battery-empty';
@@ -27,11 +57,29 @@ $(() => {
 		$('#clock').text(data.currentTime);
 	}
 
-	function toggleHomeScreen() {
+	function receiveContacts(data) {
+		if ($('#appContacts').length) {
+			$('#appContactsList').html('');
+			let newHTML = '';
+			data.forEach((d) => {
+				newHTML += `
+				<div class='contact'>
+					<div>${d.name}</div>
+					<div>${d.phone}</div>
+				</div>`;
+			});
+			$('#appContactsList').html(newHTML);
+		}
+	}
+
+	function toggleHomeScreen(screen = null) {
 		if ($('#homeScreen').is(':visible')) {
 			$('#homeScreen').hide();
 			$('#appScreen').show();
+			$('#appScreen > div').hide();
 			$('#homeButton').show();
+			if (screen)
+				$((showScreen = '#' + screen.replace('Button', ''))).show();
 		} else {
 			$('#homeScreen').show();
 			$('#appScreen').hide();
@@ -40,20 +88,38 @@ $(() => {
 	}
 	// #endregion
 
-	// #region TEST
-	updateSmartphone({
-		batteryPercent: 88,
-		currentTime: '23:09'
-	});
-	// #endregion
-
 	// #region ALT
 	if ('alt' in window) {
-		alt.on('updateSmartphone', (data) => {
+		alt.on('smartphone:update', (data) => {
 			updateSmartphone(data);
+		});
+		alt.on('smartphone:receiveContacts', (data) => {
+			receiveContacts(data);
 		});
 	}
 	// #endregion
+
+	// #region EVENTS
+	$('#appContactsSearch').on('keyup change', function() {
+		let searchString = $(this)
+			.val()
+			.toLowerCase();
+		if (searchString.length) {
+			$('.contact').hide();
+			$('.contact').each(function() {
+				if (
+					$(this)
+						.children()
+						.text()
+						.toLowerCase()
+						.includes(searchString)
+				)
+					$(this).show();
+			});
+		} else {
+			$('.contact').show();
+		}
+	});
 
 	$('#appChargeButton').click(() => {
 		audioCharge.play();
@@ -87,6 +153,12 @@ $(() => {
 
 	$('.app').click(function() {
 		if (!noSound.includes($(this).attr('id'))) audioClick.play();
-		if (!noAppScreen.includes($(this).attr('id'))) toggleHomeScreen();
+		if (!noAppScreen.includes($(this).attr('id')))
+			toggleHomeScreen($(this).attr('id'));
 	});
+
+	$('#appContactsButton').click(() => {
+		if ('alt' in window) alt.emit('smartphone:requestContacts');
+	});
+	// #endregion
 });
