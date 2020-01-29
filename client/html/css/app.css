@@ -18,19 +18,23 @@
 	--background: rgb(37, 105, 150);
 	--fav: rgb(25, 70, 100);
 	--fav-dark: rgb(17, 47, 66);
+	--red: rgb(207, 102, 102);
 }
 * {
 	margin: 0;
 	padding: 0;
 	font-family: 'Varela Round', Helvetica, sans-serif;
 }
+*:focus {
+	outline: none;
+}
 body {
 	font-size: 1vw;
 	overflow: hidden;
 }
-h1 {
+h5 {
 	text-align: center;
-	font-size: 1.25vw;
+	font-size: 1vw;
 }
 #smartphone {
 	color: var(--font);
@@ -39,10 +43,11 @@ h1 {
 	width: 15vw;
 	height: 30vw;
 	border: 0.2vw solid var(--border);
-	left: 2vw;
-	bottom: 2vw;
+	right: 2vw;
+	bottom: -29vw;
 	border-radius: 0.75vw;
 	box-shadow: 0 0 1vw var(--border);
+	opacity: 0.5;
 }
 #head {
 	display: flex;
@@ -76,6 +81,7 @@ h1 {
 }
 #homeScreen {
 	min-height: calc(100% - 1vw);
+	position: relative;
 }
 #appScreen {
 	min-height: calc(100% - 5vw);
@@ -94,15 +100,8 @@ input[type='text'] {
 	border: 0;
 	padding: 0.25vw;
 	color: var(--font);
-}
-.contact {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	cursor: pointer;
-}
-#homeScreen {
-	position: relative;
+	border-radius: 0.25vw;
+	font-size: 0.75vw;
 }
 #homeButton {
 	position: absolute;
@@ -160,15 +159,6 @@ input[type='text'] {
 	position: relative;
 	user-select: none;
 }
-.app > span {
-	font-size: 0.5vw;
-	position: absolute;
-	left: 0;
-	bottom: 0.75vw;
-	text-align: center;
-	width: 100%;
-	height: 0.25vw;
-}
 .app:hover {
 	opacity: 0.75;
 }
@@ -196,26 +186,68 @@ input[type='text'] {
 #appWeatherButton {
 	background-color: rgb(81, 158, 177);
 }
-#appSearchButton {
-	background-color: rgb(20, 60, 112);
-}
-#appGarageButton {
-	background-color: rgb(75, 75, 75);
-}
-#appDispatchButton {
-	background-color: rgb(161, 20, 20);
-}
-#appPhotosButton {
-	background-color: rgb(104, 47, 197);
-}
-#appNotesButton {
-	background-color: rgb(175, 140, 76);
-}
 #appGpsButton {
 	background-color: rgb(59, 112, 212);
 }
+#appCalenderButton {
+	background-color: rgb(51, 51, 51);
+}
+.contact {
+	cursor: pointer;
+}
 #appContactsList > div {
-	border-bottom: 0.05vw solid rgb(25, 83, 121);
+	border-bottom: 0.05vw solid rgb(50, 121, 165);
 	padding: 0.25vw;
 	font-size: 0.75vw;
+}
+#appContactsEdit {
+	display: none;
+}
+#appContactsOverview {
+	display: none;
+}
+#editContactHead {
+	font-size: 0.75vw;
+	cursor: pointer;
+	width: 50%;
+}
+#editContactLetter,
+#editContactButtons > div {
+	width: 3vw;
+	height: 3vw;
+	background-color: rgb(182, 182, 182);
+	border-radius: 100%;
+	margin-left: calc(100% / 2 - 1.5vw);
+	text-align: center;
+	font-size: 2vw;
+	opacity: 0.7;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+#editContactButtons {
+	width: 75%;
+	margin: 1vw auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+#editContactDeleteButton {
+	color: var(--red);
+}
+#editContactButtons > div {
+	cursor: pointer;
+	font-size: 1vw;
+	width: 2.5vw;
+	height: 2.5vw;
+	margin-left: 0;
+	opacity: 1;
+	background-color: var(--fav);
+}
+#editContactButtons > div:hover {
+	opacity: 0.7;
+}
+#editContactName {
+	margin-top: 1vw;
+	text-align: center;
 }

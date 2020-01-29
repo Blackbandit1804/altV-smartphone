@@ -9,46 +9,24 @@
 	<body>
 		<div id="smartphone">
 			<div id="head">
-				<div id="clock">20:12</div>
+				<div id="clock"></div>
 				<div id="notch"></div>
 				<div id="headInfo">
-					<i class="fas fa-signal" id="signal"></i>
 					<i class="fas fa-battery-full" id="battery"></i>
+					<i class="fas fa-signal" id="signal"></i>
 				</div>
 			</div>
 			<div id="homeScreen">
 				<div id="apps">
-					<div class="app" id="appChargeButton">
-						<i class="fas fa-charging-station"></i>
-						<span>Charge</span>
-					</div>
+					<div class="app" id="appCalenderButton"></div>
 					<div class="app" id="appWeatherButton">
 						<i class="fas fa-cloud-sun"></i>
-						<span>Weather</span>
 					</div>
-					<div class="app" id="appSearchButton">
-						<i class="fas fa-search"></i>
-						<span>Search</span>
-					</div>
-					<div class="app" id="appGarageButton">
-						<i class="fas fa-warehouse"></i>
-						<span>Vehicles</span>
-					</div>
-					<div class="app" id="appDispatchButton">
-						<i class="fas fa-ambulance"></i>
-						<span>Dispatch</span>
+					<div class="app" id="appChargeButton">
+						<i class="fas fa-charging-station"></i>
 					</div>
 					<div class="app" id="appAirplaneButton">
 						<i class="fas fa-plane"></i>
-						<span>Airplane</span>
-					</div>
-					<div class="app" id="appNotesButton">
-						<i class="fas fa-clipboard-list"></i>
-						<span>Notes</span>
-					</div>
-					<div class="app" id="appGpsButton">
-						<i class="fas fa-map-marker-alt"></i>
-						<span>GPS</span>
 					</div>
 				</div>
 				<div id="fav">
@@ -61,23 +39,49 @@
 					<div class="app" id="appMessagesButton">
 						<i class="fas fa-comment"></i>
 					</div>
-					<div class="app" id="appPhotosButton">
-						<i class="fas fa-image"></i>
+					<div class="app" id="appGpsButton">
+						<i class="fas fa-map-marker-alt"></i>
 					</div>
 				</div>
 			</div>
+
 			<div id="appScreen">
+				<!-- CONTACTS -->
 				<div id="appContacts">
-					<h1>Contacts</h1>
-					<input
-						type="text"
-						id="appContactsSearch"
-						placeholder="Search..."
-						autofocus
-					/>
-					<div id="appContactsList"></div>
+					<div id="appContactsOverview">
+						<h5>Contacts</h5>
+						<input
+							type="text"
+							id="appContactsSearch"
+							placeholder="Search"
+						/>
+						<div id="appContactsList"></div>
+					</div>
+					<div id="appContactsEdit">
+						<div id="editContactHead">
+							<i class="fas fa-chevron-left"></i> Contacts
+						</div>
+						<div id="editContactLetter">
+							<span></span>
+						</div>
+						<div id="editContactName"></div>
+						<div id="editContactButtons">
+							<div><i class="fas fa-phone"></i></div>
+							<div><i class="fas fa-comment"></i></div>
+							<div id="editContactDeleteButton">
+								<i class="fas fa-trash"></i>
+							</div>
+						</div>
+						<div id="editContact">
+							<input type="hidden" id="contactId" />
+							<input type="text" id="contactNewName" />
+							<input type="text" id="contactNewPhone" />
+						</div>
+					</div>
 				</div>
+				<!-- CONTACTS END -->
 			</div>
+
 			<div id="homeButton"></div>
 		</div>
 		<script src="js/jquery.js"></script>
