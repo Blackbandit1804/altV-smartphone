@@ -1,5 +1,7 @@
 # alt:V smartphone (responsive)
 
+This is just a basis on which you can build a complete system.
+
 [![](http://img.youtube.com/vi/NUeejoe-Yao/0.jpg)](http://www.youtube.com/watch?v=NUeejoe-Yao 'Preview')
 
 ## Setup
